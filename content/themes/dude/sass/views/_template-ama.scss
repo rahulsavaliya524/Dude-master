@@ -1,0 +1,808 @@
+/* stylelint-disable selector-max-class, selector-max-specificity, no-descending-specificity, selector-max-combinators, selector-max-compound-selectors, selector-max-pseudo-class, selector-attribute-quotes, max-nesting-depth, number-max-precision, no-unknown-animations, no-duplicate-selectors */
+
+// Vars
+$max-width: 100rem;
+$color-ama-background: $color-white;
+$color-ama-body-text: $color-paragraphs;
+$color-borders: #e8e8e8;
+$color-faded: rgba($color-midnight, .5);
+$color-amount: #68d4ab;
+$color-liked: #e2264d;
+$color-notliked: #aab8c2;
+
+body {
+  color: $color-ama-body-text;
+}
+
+.gform_confirmation_wrapper {
+  background: $color-white !important;
+  position: relative !important;
+  z-index: 22 !important;
+}
+
+.screen-reader-text {
+  border: 0;
+  clip: rect(1px, 1px, 1px, 1px);
+  clip-path: inset(50%);
+  height: 1px;
+  margin: -1px;
+  overflow: hidden;
+  padding: 0;
+  position: absolute !important;
+  width: 1px;
+  word-wrap: normal !important; // Many screen reader and browser combinations announce broken words as they would appear visually.
+}
+
+// Header
+.ama-header .container {
+  padding-top: 6rem;
+  padding-bottom: 6rem;
+
+  @media (min-width: 720px) {
+    @include grid(2, $gutter_x: 50px, $gutter_y: 50px);
+  }
+
+  .ama-header-logo {
+    display: flex;
+    align-items: center;
+    justify-content: flex-start;
+    flex-wrap: wrap;
+  }
+
+  .ama-header-text {
+    h1 {
+      font-size: 26px;
+      color: $color-white;
+      margin-top: 0;
+      margin-bottom: 1.5rem;
+
+      @media (max-width: 500px) {
+        text-align: center;
+      }
+    }
+
+    p {
+      color: $color-white;
+      margin: 0;
+
+      @media (max-width: 500px) {
+        text-align: center;
+      }
+    }
+  }
+
+  .ama-header-logo .ama-logo {
+    width: 300px;
+    height: auto;
+
+    // White space in svg
+    margin-top: -22px;
+
+    @media (max-width: 500px) {
+      max-width: 200px;
+      width: 100%;
+      height: auto;
+      margin-left: auto;
+      margin-right: auto;
+    }
+
+    @media (max-width: 720px) {
+      margin-bottom: 2rem;
+    }
+
+    // Offset for "Ama" word in logo so it would appear more centered
+
+    @media (min-width: 720px) {
+      margin-bottom: -45px;
+    }
+  }
+}
+
+// Select drop downs
+select {
+  border-radius: 0;
+  background-image: url('../svg/select.svg');
+  background-repeat: no-repeat;
+  background-position: right 0 center;
+  background-size: 40px auto;
+  transition: none;
+  width: 100%;
+  -webkit-appearance: none;
+  -moz-appearance: none;
+  text-indent: 1px;
+  border: 2px solid $color-paragraphs;
+  color: $color-paragraphs;
+  padding: 10px 15px;
+  line-height: 24px;
+  font-size: 16px;
+  max-width: 150px;
+  margin-left: auto;
+
+  &:focus {
+    border-radius: 0;
+    background-image: url('../svg/select.svg');
+    background-repeat: no-repeat;
+    background-position: right 0 center;
+    background-size: 40px auto;
+  }
+
+  &::-ms-expand {
+    display: none;
+  }
+}
+
+.template-ama .wp-block-image {
+  overflow: hidden;
+}
+
+.template-ama .container .ama-updating {
+  margin-bottom: 3rem;
+  margin-top: 3rem;
+  padding-bottom: 3rem;
+  transition: all .22s;
+  opacity: .6;
+  position: relative;
+
+  button {
+    padding-top: 1rem;
+    padding-bottom: 1rem;
+    margin-left: 1rem;
+
+    @media (max-width: 450px) {
+      width: 100%;
+      margin: 0;
+      max-width: 100%;
+    }
+  }
+
+  @media (max-width: 450px) {
+    select {
+      margin-bottom: 1rem;
+      width: 100%;
+      max-width: 100%;
+    }
+  }
+
+  @media (min-width: 680px) {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+  }
+
+  &:hover {
+    opacity: 1;
+  }
+
+  label {
+    font-weight: 500;
+    font-size: 18px;
+    color: $color-paragraphs;
+
+    @media (max-width: 680px) {
+      display: block;
+      width: 100%;
+      margin-bottom: 2rem;
+    }
+  }
+}
+
+.info-area {
+  border-bottom: 1px solid $color-borders;
+  margin-bottom: 3rem;
+  margin-top: 6rem;
+  padding-bottom: 6rem;
+}
+
+.infobox {
+  padding: 3rem;
+  background: rgba(#eee, .5);
+
+  .info-content {
+    display: none;
+    margin-top: 3rem;
+
+    &.toggled {
+      display: block;
+    }
+  }
+
+  a:hover,
+  a:focus {
+    color: $color-cobalt-blue;
+  }
+
+  button {
+    background: transparent;
+    border: 0;
+    padding: 0;
+    margin: 0;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    color: $color-midnight;
+    font-size: 20px;
+    font-weight: 500;
+
+    &:focus {
+      outline: 0;
+    }
+
+    &:hover {
+      cursor: pointer;
+      color: $color-cobalt-blue;
+    }
+
+    svg {
+      width: 30px;
+      height: 30px;
+      margin-right: 1.5rem;
+    }
+  }
+
+  p {
+    font-size: 15px;
+    color: $color-paragraphs;
+  }
+
+  h1,
+  h2,
+  h3 {
+    font-size: 20px;
+    color: $color-headings;
+    margin: 0;
+  }
+}
+
+.container {
+  max-width: $max-width;
+  margin-left: auto;
+  margin-right: auto;
+
+  .ama-updating button,
+  input[type="reset"],
+  input[type="submit"],
+  input[type="button"] {
+    @extend %default;
+    background: $color-midnight;
+    color: $color-white;
+    font-size: 18px;
+    font-weight: 700;
+    border: 0;
+    width: auto;
+    display: inline-flex;
+    align-items: center;
+    padding: 1.4rem 2.8rem;
+    margin-bottom: 0;
+    text-decoration: none;
+    position: relative;
+    cursor: pointer;
+    transition: 150ms linear background;
+    font-family: $font-base;
+    white-space: nowrap;
+
+    span,
+    svg {
+      position: relative;
+      transition: all $transition-duration;
+      transform: translate(0, 0);
+      display: inline-block;
+    }
+
+    @media (max-width: 420px) {
+      font-size: 16px;
+
+      svg {
+        width: 24px;
+        height: 24px;
+      }
+    }
+
+    &:hover,
+    &:focus {
+      color: $color-mint;
+      background: $color-midnight-blue;
+
+      span,
+      svg {
+        transform: translate(2px, 0);
+      }
+    }
+  }
+
+  ul,
+  li {
+    margin: 0;
+    padding: 0;
+  }
+
+  > * {
+    margin-left: 3rem;
+    margin-right: 3rem;
+
+    @media (max-width: $container-mobile) {
+      margin-left: 2rem;
+      margin-right: 2rem;
+    }
+
+    @media (max-width: 420px) {
+      margin-left: 1.7rem;
+      margin-right: 1.7rem;
+    }
+  }
+}
+
+// Form
+.form {
+  margin-bottom: 0;
+  margin-top: 6rem;
+  padding-bottom: 0;
+
+  @media (max-width: 550px) {
+    .container .gform_footer .button {
+      width: 100%;
+      display: block;
+      text-align: center;
+    }
+  }
+
+  .disclaimer {
+    font-size: 15px;
+    color: $color-faded;
+
+    @media (min-width: 550px) {
+      position: absolute;
+      margin-top: -37px;
+      margin-left: 240px;
+    }
+  }
+
+  label {
+    @extend .screen-reader-text;
+    font-weight: 500;
+    margin-bottom: 1rem;
+    display: block;
+  }
+
+  textarea {
+    font-size: 18px;
+    border: 2px solid $color-midnight;
+    padding: 1.8rem 2rem;
+    color: $color-midnight;
+    width: 100%;
+    height: 150px;
+    margin-bottom: 1rem;
+
+    &::placeholder {
+      opacity: 1;
+      color: $color-midnight;
+      font-weight: 500;
+    }
+  }
+}
+
+.ama-header {
+  background-image: url('../images/ama-desktop-hero.jpg');
+  background-size: cover;
+
+  @media (max-width: 720px) {
+    background-image: url('../images/ama-mobile-hero.jpg');
+    background-position: bottom;
+  }
+}
+
+.ama-drafts {
+  margin-bottom: 3rem;
+  padding-bottom: 3rem;
+  margin-top: 0;
+  border-bottom: 1px solid rgba($color-borders, .7);
+  font-weight: 500;
+  display: flex;
+  justify-content: space-between;
+  position: relative;
+
+  p {
+    margin: 0;
+    font-size: 20px;
+
+    @media (max-width: 480px) {
+      font-size: 16px;
+    }
+  }
+
+  .drafts-count {
+    background: $color-mint;
+    font-weight: 700;
+    width: 52px;
+    min-width: 52px;
+    height: 52px;
+    border-radius: 50%;
+    box-shadow: 0 0 1px 1px $color-mint;
+    animation: pulse-animation 2s infinite;
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+
+    @media (max-width: 480px) {
+      width: 36px;
+      min-width: 36px;
+      height: 36px;
+    }
+  }
+}
+
+.ama-item {
+  border-bottom: 1px solid $color-borders;
+  padding-bottom: 4rem;
+  margin-bottom: 4rem;
+  box-shadow: 0 0 1px 1px transparent;
+  transition: all .22s;
+
+  a {
+    text-decoration: underline;
+  }
+
+  &.loaded {
+    animation: pulse-animation 1s infinite;
+    padding: 2rem;
+  }
+
+  &:last-child:not(.show) {
+    border-bottom: 0;
+  }
+
+  h2,
+  h3 {
+    font-size: 26px;
+    margin: 0 4rem 0 0;
+  }
+
+  p:last-child {
+    margin-bottom: 0;
+  }
+}
+
+// Animations
+@keyframes pulse-animation {
+  0% {
+    box-shadow: 0 0 0 0 rgba(3, 6, 28, .2);
+  }
+
+  100% {
+    box-shadow: 0 0 0 20px rgba(3, 6, 28, 0);
+  }
+}
+
+#dude-ama:not([data-v-app]) .hide-until-vue-loaded {
+  display: none;
+}
+
+// Spinner
+.checking-for-updates {
+  position: absolute;
+  left: 220px;
+  top: 0;
+
+  @media (max-width: 720px) {
+    right: 0;
+    left: auto;
+    top: -10px;
+  }
+}
+
+.spinner svg {
+  width: 50px;
+  height: 50px;
+
+  @media (max-width: 480px) {
+    width: 32px;
+    height: 32px;
+  }
+}
+
+.container.ama {
+  padding-top: 0;
+  margin-bottom: 6rem;
+  overflow: visible;
+  position: relative;
+}
+
+.likes {
+  display: inline-flex;
+  align-items: center;
+  margin-top: 33px;
+
+  span {
+    font-weight: 700;
+  }
+
+  button {
+    background: transparent;
+    border: 0;
+    padding: 0;
+    font-weight: 700;
+    cursor: pointer;
+    width: 60px;
+
+    + span {
+      color: $color-notliked;
+      margin-left: -9px;
+      position: relative;
+      top: 2px;
+      z-index: 4;
+    }
+
+    &:focus {
+      outline: 0;
+    }
+
+    &:hover:not([disabled]) {
+      cursor: pointer;
+    }
+
+    &[disabled] {
+      #heart {
+        transform: scale(.2);
+        fill: #e2264d;
+        animation: animateHeart .3s linear forwards .25s;
+      }
+
+      #main-circ {
+        transition: all 2s;
+        animation: animateCircle .3s linear forwards;
+        opacity: 1;
+      }
+
+      #grp1 {
+        opacity: 1;
+        transition: .1s all .3s;
+
+        #oval1 {
+          transform: scale(0) translate(0, -30px);
+          transform-origin: 0 0 0;
+          transition: .5s transform .3s;
+        }
+
+        #oval2 {
+          transform: scale(0) translate(10px, -50px);
+          transform-origin: 0 0 0;
+          transition: 1.5s transform .3s;
+        }
+      }
+
+      #grp2 {
+        opacity: 1;
+        transition: .1s all .3s;
+
+        #oval1 {
+          transform: scale(0) translate(30px, -15px);
+          transform-origin: 0 0 0;
+          transition: .5s transform .3s;
+        }
+
+        #oval2 {
+          transform: scale(0) translate(60px, -15px);
+          transform-origin: 0 0 0;
+          transition: 1.5s transform .3s;
+        }
+      }
+
+      #grp3 {
+        opacity: 1;
+        transition: .1s all .3s;
+
+        #oval1 {
+          transform: scale(0) translate(30px, 0);
+          transform-origin: 0 0 0;
+          transition: .5s transform .3s;
+        }
+
+        #oval2 {
+          transform: scale(0) translate(60px, 10px);
+          transform-origin: 0 0 0;
+          transition: 1.5s transform .3s;
+        }
+      }
+
+      #grp4 {
+        opacity: 1;
+        transition: .1s all .3s;
+
+        #oval1 {
+          transform: scale(0) translate(30px, 15px);
+          transform-origin: 0 0 0;
+          transition: .5s transform .3s;
+        }
+
+        #oval2 {
+          transform: scale(0) translate(40px, 50px);
+          transform-origin: 0 0 0;
+          transition: 1.5s transform .3s;
+        }
+      }
+
+      #grp5 {
+        opacity: 1;
+        transition: .1s all .3s;
+
+        #oval1 {
+          transform: scale(0) translate(-10px, 20px);
+          transform-origin: 0 0 0;
+          transition: .5s transform .3s;
+        }
+
+        #oval2 {
+          transform: scale(0) translate(-60px, 30px);
+          transform-origin: 0 0 0;
+          transition: 1.5s transform .3s;
+        }
+      }
+
+      #grp6 {
+        opacity: 1;
+        transition: .1s all .3s;
+
+        #oval1 {
+          transform: scale(0) translate(-30px, 0);
+          transform-origin: 0 0 0;
+          transition: .5s transform .3s;
+        }
+
+        #oval2 {
+          transform: scale(0) translate(-60px, -5px);
+          transform-origin: 0 0 0;
+          transition: 1.5s transform .3s;
+        }
+      }
+
+      #grp7 {
+        opacity: 1;
+        transition: .1s all .3s;
+
+        #oval1 {
+          transform: scale(0) translate(-30px, -15px);
+          transform-origin: 0 0 0;
+          transition: .5s transform .3s;
+        }
+
+        #oval2 {
+          transform: scale(0) translate(-55px, -30px);
+          transform-origin: 0 0 0;
+          transition: 1.5s transform .3s;
+        }
+      }
+
+      #grp2 {
+        opacity: 1;
+        transition: .1s opacity .3s;
+      }
+
+      #grp3 {
+        opacity: 1;
+        transition: .1s opacity .3s;
+      }
+
+      #grp4 {
+        opacity: 1;
+        transition: .1s opacity .3s;
+      }
+
+      #grp5 {
+        opacity: 1;
+        transition: .1s opacity .3s;
+      }
+
+      #grp6 {
+        opacity: 1;
+        transition: .1s opacity .3s;
+      }
+
+      #grp7 {
+        opacity: 1;
+        transition: .1s opacity .3s;
+      }
+
+      + span {
+        color: $color-liked;
+      }
+    }
+  }
+
+  svg {
+    overflow: visible;
+    width: 60px;
+    margin-right: 0;
+    margin-left: -24px;
+    margin-top: -24px;
+    margin-bottom: -24px;
+
+    #heart {
+      transform-origin: center;
+      animation: animateHeartOut .3s linear forwards;
+    }
+
+    #main-circ {
+      transform-origin: 29.5px 29.5px;
+    }
+  }
+
+  .countlabel,
+  .label {
+    @extend .screen-reader-text;
+  }
+}
+
+@keyframes animateCircle {
+  40% {
+    transform: scale(10);
+    opacity: 1;
+    fill: #dd4688;
+  }
+
+  55% {
+    transform: scale(11);
+    opacity: 1;
+    fill: #d46abf;
+  }
+
+  65% {
+    transform: scale(12);
+    opacity: 1;
+    fill: #cc8ef5;
+  }
+
+  75% {
+    transform: scale(13);
+    opacity: 1;
+    fill: transparent;
+    stroke: #cc8ef5;
+    stroke-width: .5;
+  }
+
+  85% {
+    transform: scale(17);
+    opacity: 1;
+    fill: transparent;
+    stroke: #cc8ef5;
+    stroke-width: .2;
+  }
+
+  95% {
+    transform: scale(18);
+    opacity: 1;
+    fill: transparent;
+    stroke: #cc8ef5;
+    stroke-width: .1;
+  }
+
+  100% {
+    transform: scale(19);
+    opacity: 1;
+    fill: transparent;
+    stroke: #cc8ef5;
+    stroke-width: 0;
+  }
+}
+
+@keyframes animateHeart {
+  0% {
+    transform: scale(.2);
+  }
+
+  40% {
+    transform: scale(1.2);
+  }
+
+  100% {
+    transform: scale(1);
+  }
+}
+
+@keyframes animateHeartOut {
+  0% {
+    transform: scale(1.4);
+  }
+
+  100% {
+    transform: scale(1);
+  }
+}

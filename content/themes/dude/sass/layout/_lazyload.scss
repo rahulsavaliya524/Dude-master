@@ -1,0 +1,67 @@
+// Styling lazy loading div
+// @link https://github.com/verlok/vanilla-lazyload#lazy-background-image
+/* stylelint-disable */
+
+div.lazy {
+  position: absolute;
+  height: 100%;
+  width: 100%;
+  background-size: cover;
+  background-position: center;
+  min-height: 0;
+  z-index: 0;
+  top: 0;
+  left: 0;
+}
+
+// General class for any lazy load container
+.has-lazyload {
+  overflow: hidden;
+  position: relative;
+}
+
+// Legacy lazy load starts here
+.background-image {
+  @include background-cover();
+  position: absolute;
+  width: 100%;
+  height: 100%;
+  top: 0;
+  left: 0;
+  z-index: 0;
+
+  &.reveal {
+    filter: none;
+  }
+
+  &.preview {
+    filter: blur(1vw);
+  }
+
+  &.full-image {
+    z-index: 1;
+    transition: all .88s;
+  }
+}
+
+.block.block-hero .featured-image .background-image {
+  &.preview {
+    transform: scale(1.05);
+  }
+}
+
+@keyframes progressive-reveal {
+  0% {
+    opacity: 0;
+  }
+
+  100% {
+    opacity: 1;
+  }
+}
+
+// General class for any lazy load container
+.has-lazyload {
+  overflow: hidden;
+  position: relative;
+}

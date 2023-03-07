@@ -1,0 +1,10 @@
+/* stylelint-disable selector-max-class, selector-max-specificity */
+body.page-template-template-company {
+  .block.block-cta-with-image {
+    @media (max-width: $container-mobile) {
+      .col.col-image {
+        height: 22rem;
+      }
+    }
+  }
+}

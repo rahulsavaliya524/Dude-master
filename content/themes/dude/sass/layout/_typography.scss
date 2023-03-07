@@ -1,0 +1,258 @@
+/* stylelint-disable selector-max-class, selector-max-specificity, no-descending-specificity, selector-max-combinators, selector-max-compound-selectors, selector-max-pseudo-class, selector-attribute-quotes, max-nesting-depth */
+// -----------------------------------------------------------
+// Typography
+//
+// Everything around fonts, font size definitions and typeset
+// presets. No modular scale, but a sophisticated viewport
+// based responsive mixin can be found in _helpers.scss
+// -----------------------------------------------------------
+
+/* stylelint-disable declaration-property-unit-allowed-list */
+// Set up self-hosted fonts here
+@include fontFace('Circular', '../fonts/circular-400', 400);
+@include fontFace('Circular', '../fonts/circular-400-italic', 400, italic);
+@include fontFace('Circular', '../fonts/circular-500', 500);
+@include fontFace('Circular', '../fonts/circular-500-italic', 500, italic);
+@include fontFace('Circular', '../fonts/circular-600', 600);
+@include fontFace('Circular', '../fonts/circular-600-italic', 600, italic);
+@include fontFace('Circular', '../fonts/circular-700', 700);
+@include fontFace('Circular', '../fonts/circular-900', 900);
+
+// Set root size for rems
+:root {
+  font-size: 62.5%;
+}
+
+// Special links
+.cta-link,
+%cta-link {
+  color: $color-midnight-blue;
+  font-size: 18px;
+  display: inline-block;
+  font-weight: 600;
+  padding-bottom: 1rem;
+
+  &::after {
+    width: 100%;
+    height: 2px;
+    background: $color-midnight-blue;
+    position: relative;
+    content: '';
+    display: block;
+    transform: translateY(1rem);
+    transition: all $transition-duration;
+  }
+
+  &:hover {
+    color: $color-midnight-blue;
+  }
+
+  &:hover::after {
+    width: 50%;
+    background: $color-midnight-blue;
+  }
+}
+
+.cta-link-wrapper .cta-link::after,
+.link-wrapper .cta-link::after,
+.cta-link::after {
+  width: 100%;
+  height: 2px;
+  background: $color-midnight-blue;
+  position: relative;
+  content: '';
+  display: block;
+  transform: translateY(1rem);
+  transition: all $transition-duration;
+}
+
+.cta-link-wrapper .cta-link:hover::after,
+.link-wrapper .cta-link:hover::after,
+.cta-link:hover::after {
+  width: 50%;
+}
+
+.cta-link.cta-link-white {
+  color: $color-white;
+
+  &::after {
+    background: $color-white;
+  }
+}
+
+.block p a:not(.button):not(.url):not(.no-text-link):not(.cta-link):not(.wp-block-button__link):not(.post-edit-link):not(.contact-detail),
+.text-link {
+  @include link();
+}
+
+.block.block-title-left-text-right li a:not(.button):not(.url):not(.no-text-link):not(.cta-link):not(.wp-block-button__link):not(.post-edit-link):not(.contact-detail) {
+  @include link();
+}
+
+.block .link-wrapper {
+  margin-top: 4.8rem;
+}
+
+.block .link-wrapper a {
+  @extend %cta-link;
+}
+
+// Start typography settings
+body {
+  font-size: 1.7rem;
+  font-family: $font-base;
+  color: $color-paragraphs;
+
+  // Font smoothing options
+  text-size-adjust: none;
+  text-rendering: optimizeLegibility;
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+}
+
+// Links
+a {
+  color: $color-links;
+  text-decoration: none;
+  transition: all $transition-duration;
+
+  &:hover {
+    color: $color-hover;
+  }
+}
+
+// Defaults
+p,
+figcaption,
+small,
+ol,
+ul,
+li,
+blockquote,
+code,
+th,
+td,
+table,
+tr,
+%default {
+  @include responsive-font($font-min-size, $font-max-size);
+  line-height: $font-base-line-height;
+  font-weight: 400;
+
+  @media (max-width: 600px) {
+    font-size: var(--font-size-general-small);
+  }
+}
+
+@media (max-width: $container-ipad) {
+  body .block table {
+    margin-left: 2rem;
+    width: calc(100% - 2rem);
+  }
+}
+
+p {
+  margin-top: 2.7rem;
+  margin-bottom: 2.7rem;
+  line-height: $font-base-line-height;
+
+  &:first-child {
+    margin-top: 0;
+  }
+
+  &:last-child {
+    margin-bottom: 0;
+  }
+}
+
+// Heading defaults
+h1,
+h2,
+h3,
+h4,
+h5,
+h6 {
+  color: $color-headings;
+  font-family: $font-headings;
+  font-weight: $headings-weight;
+  line-height: 1.5;
+}
+
+h1,
+h2 {
+  line-height: $font-headings-line-height;
+}
+
+// Based on type-scale with 14.255 base size where h1 is max 60px.
+// See model that these are based on: https://www.dude.fi/type-scale.png
+// And Versett.com: https://versett.com/
+// Define your type scale here: https://type-scale.com/
+h1,
+%h1 {
+  @include responsive-font(32px, 55px);
+}
+
+h2,
+%h2 {
+  @include responsive-font(27px, 45px);
+  margin-bottom: 2rem;
+}
+
+h3,
+%h3 {
+  @include responsive-font(25px, 35px);
+  margin-bottom: 2rem;
+}
+
+h4,
+%h4 {
+  @include responsive-font(23px, 30px);
+}
+
+h5,
+%h5 {
+  @include responsive-font(19px, 22px);
+}
+
+h6,
+%h6 {
+  @include responsive-font($font-size-general-small, 18px);
+}
+
+// Lists
+ul {
+  list-style: none;
+  padding-left: 2.7rem;
+
+  li {
+    padding: 0;
+  }
+}
+
+.gutenberg-content ul:not(.tags):not(.blocks-gallery-grid),
+.block.block-title-left-text-right ul:not(.tags):not(.blocks-gallery-grid) {
+  list-style: none;
+
+  a {
+    font-weight: 500;
+  }
+
+  li::before {
+    content: '\2022'; // \2022 is the CSS Code/unicode for a bullet
+    color: $color-mint;
+    font-weight: 700;
+    display: inline-block;
+    width: 1rem;
+    margin-left: -2rem;
+    margin-right: 1rem;
+  }
+}
+
+// images
+img {
+  -ms-interpolation-mode: bicubic;
+  height: auto;
+  vertical-align: middle;
+  max-width: 100%;
+}
+/* stylelint-enable declaration-property-unit-allowed-list */

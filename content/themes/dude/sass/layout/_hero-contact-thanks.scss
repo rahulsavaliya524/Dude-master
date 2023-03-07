@@ -1,0 +1,47 @@
+/* stylelint-disable selector-max-class, selector-max-specificity, no-descending-specificity, selector-max-pseudo-class, max-nesting-depth */
+.block.block-hero.block-hero-contact-thanks {
+  .shade {
+    z-index: 7;
+  }
+
+  &.block-hero-fail {
+    background: $color-midnight;
+  }
+
+  .container {
+    z-index: 9;
+  }
+
+  .hero-description a {
+    @include link($color: var(--color-white), $color-hover: var(--color-white), $color-underline: rgba(255, 255, 255, .3), $color-underline-hover: var(--color-mint));
+  }
+
+  .content {
+    text-align: center;
+    margin: 0 auto;
+
+    p {
+      width: 100%;
+      max-width: 100%;
+
+      a[href*="//"]:not([href*="www.dude.fi"]):not([href*="dude.vaiheessa.fi"]):not([href*="dude.test"]):not([href*="localhost:3000"]):not(.contact-detail):not(.button) {
+        margin-right: 1rem;
+
+        &::after {
+          background-image: url('../svg/external-link-white.svg') !important;
+        }
+      }
+    }
+
+    > div,
+    iframe {
+      border-radius: 4px;
+    }
+  }
+
+  h1,
+  p {
+    color: $color-white;
+    text-align: center;
+  }
+}

@@ -1,0 +1,95 @@
+/* stylelint-disable selector-max-class, selector-max-specificity */
+.block.block-dudes {
+  background: $color-white;
+  padding-top: 0;
+  padding-bottom: $padding-blocks-medium;
+
+  .container {
+    overflow: visible;
+  }
+
+  .cols {
+    @include grid(3, $gutter_x: $margin-between-grid-columns, $gutter_y: 0);
+
+    @media (max-width: 1000px) {
+      @include grid(2, $gutter_x: $margin-between-grid-columns, $gutter_y: 0);
+    }
+
+    @media (max-width: 660px) {
+      display: block;
+    }
+  }
+
+  .col {
+    overflow: hidden;
+    position: relative;
+
+    // Some browsers render incorrectly
+    .background-image.preview,
+    .lazy {
+      filter: none;
+    }
+
+    .image {
+      @include aspect-ratio(408, 560);
+      overflow: hidden;
+      position: relative;
+
+      > div {
+        background-size: contain;
+        background-repeat: no-repeat;
+        background-position: bottom;
+      }
+    }
+
+    @media (max-width: 660px) {
+      margin-bottom: 2rem;
+    }
+  }
+
+  .content {
+    padding: 2.5rem;
+    text-align: center;
+    height: auto;
+
+    a {
+      color: $color-midnight-blue;
+    }
+
+    .social {
+      margin-top: 0;
+    }
+
+    h3 {
+      @extend %general-heading-small;
+      margin-bottom: 1rem;
+      margin-top: 0;
+      font-weight: 400;
+    }
+
+    p {
+      font-size: var(--font-size-general-small);
+      font-weight: 400;
+      margin: 0;
+
+      &.person-title {
+        margin-bottom: 2rem;
+      }
+    }
+  }
+}
+
+/* stylelint-disable selector-max-pseudo-class */
+.social a[href*="//"]:not([href*="www.dude.fi"]):not([href*="dude.vaiheessa.fi"]):not([href*="dude.test"]):not([href*="localhost:3000"]) {
+  padding: 0 !important;
+  background-image: none !important;
+}
+
+.page-id-4449 .block.block-dudes {
+  padding-top: $padding-blocks-medium;
+  padding-bottom: $padding-blocks-medium;
+
+  + .block.block-cta-with-image {
+    padding-top: 0;
+  }
+}

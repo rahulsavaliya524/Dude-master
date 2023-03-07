@@ -1,0 +1,90 @@
+/* stylelint-disable no-descending-specificity */
+// ------------------------------------------------------------
+// Back to top link
+//
+// The one and only anchor link that brings user back to top
+// when hitting the rock bottom.
+// ------------------------------------------------------------
+
+.back-to-top {
+  width: auto;
+  height: auto;
+  margin: 0;
+  position: fixed;
+  bottom: 2rem;
+  right: 2rem;
+  text-decoration: none;
+  opacity: 0;
+  transition: opacity .3s 0s, visibility 0s .3s;
+  z-index: 10000;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+
+  &:focus {
+    outline: none;
+  }
+
+  // Accessibility: Change color based on background color the element is on
+  &.has-light-bg svg {
+    fill: $color-midnight;
+  }
+
+  &.has-dark-bg svg {
+    fill: $color-white;
+  }
+
+  &.is-visible,
+  &.fade-out,
+  .no-touch &:hover {
+    transition: opacity .3s 0s, visibility 0s 0s;
+  }
+
+  &.is-visible { // The button becomes visible
+    opacity: 1;
+  }
+
+  &.fade-out { // If the user keeps scrolling down, the button is out of focus and becomes less visible
+    opacity: 1;
+
+    &:hover {
+      opacity: 1;
+    }
+  }
+
+  .no-touch &:hover {
+    opacity: 1;
+  }
+}
+
+.top {
+  background: transparent;
+
+  // Makes it 50x50
+  padding: 16px;
+
+  svg {
+    fill: $color-midnight;
+    margin: 0;
+    opacity: .8;
+    transition: all .3s ease;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    width: 18px;
+    height: 18px;
+
+    @media (max-width: $container-mobile) {
+      width: 15px;
+      height: 15px;
+    }
+  }
+
+  &:hover,
+  &:focus,
+  &:active {
+    svg {
+      transform: translateY(-.5rem);
+    }
+  }
+}

@@ -1,0 +1,6 @@
+{
+  "defaults": {
+    "standard": "WCAG2A"
+  },
+  "urls": ["http:\/\/dude.test\/kiitos-yhteydenotosta","http:\/\/dude.test\/tyopaikat\/wordpress-kehittaja","http:\/\/dude.test\/tyot\/bitwise","http:\/\/dude.test\/payment-failed","http:\/\/dude.test\/payment-confirmation","http:\/\/dude.test\/merch\/t-paita","http:\/\/dude.test\/tyot","http:\/\/dude.test\/tyopaikat","http:\/\/dude.test\/yhteiso-ja-koodi","http:\/\/dude.test\/yhteystiedot","http:\/\/dude.test\/visuaalinen-suunnittelu","http:\/\/dude.test\/dudet\/henri-avoketo","http:\/\/dude.test\/dudet\/timi-wahalahti","http:\/\/dude.test\/dudet\/kristian-hohkavaara","http:\/\/dude.test\/dudet\/juha-laitinen","http:\/\/dude.test\/dudet\/roni-laukkarinen","http:\/\/dude.test\/yritys","http:\/\/dude.test\/tyot\/bauer-media"]
+}

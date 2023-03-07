@@ -1,0 +1,36 @@
+/* stylelint-disable selector-max-class, selector-max-specificity, no-descending-specificity */
+.block.block-hero.block-hero-service,
+.block.block-hero.block-hero-reference-archive {
+  background-color: $color-midnight;
+  color: $color-white;
+  overflow: hidden;
+
+  h1,
+  h2 {
+    color: $color-white;
+  }
+
+  h1 {
+    margin-bottom: 3rem;
+  }
+
+  .container {
+    color: $color-white;
+  }
+
+  .content {
+    max-width: 870px;
+
+    p {
+      @extend %general-heading-small;
+    }
+
+    p:not(.button-wrapper) {
+      margin-bottom: 5rem;
+    }
+  }
+}
+
+.block.block-hero.block-hero-reference-archive + .block.block-references.block-references-archive {
+  padding-top: 0;
+}

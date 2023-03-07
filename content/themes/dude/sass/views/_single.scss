@@ -1,0 +1,542 @@
+/* stylelint-disable selector-max-class, selector-max-specificity, no-descending-specificity, selector-max-combinators, selector-max-compound-selectors, selector-max-pseudo-class, selector-attribute-quotes, max-nesting-depth */
+.single::after {
+  display: none;
+}
+
+.block.block-single:not(.block-single-reference),
+body.single .block.block-single:not(.block-single-reference) {
+  padding-top: 0;
+  padding-left: 0;
+  padding-right: 0;
+  padding-bottom: 0;
+  z-index: 2;
+  background: transparent;
+
+  // Guest post author info
+  .post > .gutenberg-content > .guest-post-author-card {
+    display: flex;
+    border-top: 1px solid #cdd0d4;
+    padding-top: 4rem;
+    margin-top: 4rem;
+    margin-bottom: 2rem;
+    padding-bottom: 0;
+    align-items: center;
+
+    @media (max-width: 700px) {
+      align-items: flex-start;
+    }
+
+    .guest-post-author-card-content > p {
+      color: $color-darkgrey;
+      font-size: 16px;
+      margin: 0;
+
+      @media (max-width: 500px) {
+        font-size: 15px;
+      }
+    }
+
+    .guest-post-author-card-content > h3 {
+      color: $color-darkgrey;
+      margin: 0 0 1rem;
+      font-size: 20px;
+    }
+
+    .avatar {
+      border-radius: 50%;
+      width: 120px;
+      height: 120px;
+      min-width: 120px;
+      margin-right: 4rem;
+
+      @media (max-width: 700px) {
+        margin-right: 3rem;
+      }
+
+      @media (max-width: 500px) {
+        width: 80px;
+        height: 80px;
+        min-width: 80px;
+      }
+    }
+  }
+
+  .post > .author-card {
+    margin-left: auto;
+    margin-right: auto;
+    max-width: $article-max-width;
+    padding-top: $margin-between-grid-columns;
+    padding-bottom: $margin-between-grid-columns - 2.7rem;
+
+    @media (max-width: $container-ipad) {
+      padding-left: $padding-default-cols-mobile;
+      padding-right: $padding-default-cols-mobile;
+    }
+
+    p {
+      margin: 0;
+      font-size: 18px;
+
+      @media (max-width: 420px) {
+        font-size: var(--font-size-general-small);
+      }
+    }
+
+    .author {
+      @include grid(2, $gutter_x: 2.7rem, $gutter_y: 0);
+      grid-template-columns: 74px 2fr;
+      align-items: center;
+      box-shadow: none;
+      border: 0;
+      font-weight: $headings-weight;
+    }
+
+    a span:not(.writtenby) {
+      display: flex;
+      flex-wrap: wrap;
+      align-items: center;
+    }
+
+    .author .writtenby {
+      /* stylelint-disable-next-line */
+      color: #8a8ca2;
+      font-weight: 400;
+      margin-right: 1rem;
+    }
+
+    img {
+      width: 74px;
+      height: 74px;
+      border-radius: 50%;
+      box-shadow: 4px 4px 10px 0 rgba(0, 0, 0, .07);
+      background-color: $color-img-background;
+
+      @media (max-width: $container-mobile) {
+        width: 64px;
+        height: 64px;
+      }
+    }
+  }
+
+  .gutenberg-content {
+    padding-top: 0;
+    padding-bottom: 0;
+  }
+
+  // Golden ratio
+  // @link https://grtcalculator.com/
+  .post > .gutenberg-content p {
+    @include responsive-font($font-min-size, 20px);
+    font-weight: 400;
+    line-height: $line-height-blog;
+    margin-top: 2.7rem;
+    margin-bottom: 2.7rem;
+
+    @media (max-width: 600px) {
+      font-size: var(--font-size-general-small);
+    }
+  }
+
+  .post > .gutenberg-content ul:not(.tags):not(.blocks-gallery-grid),
+  .post > .gutenberg-content ol {
+    line-height: $line-height-blog;
+
+    li {
+      line-height: $line-height-blog;
+
+      a {
+        @include link();
+      }
+    }
+
+    @media (max-width: $article-max-width + 40px) {
+      padding-left: 4.2rem;
+    }
+  }
+
+  .post > .gutenberg-content blockquote p {
+    @include responsive-font(20px, 28px);
+    font-weight: $headings-weight;
+
+    &:first-child {
+      margin-top: 0;
+    }
+  }
+
+  // Blog links
+  .post {
+    a {
+      color: $color-midnight-blue;
+    }
+
+    h1,
+    h2,
+    h3,
+    h4,
+    h5,
+    h6 {
+      > a:not(.button):not(.url):not(.no-text-link):not(.cta-link):not(.wp-block-button__link) {
+        color: $color-midnight-blue;
+      }
+    }
+  }
+
+  .post > .gutenberg-content blockquote cite {
+    color: $color-cobalt-blue;
+  }
+
+  &.is-old {
+    margin-top: 45px;
+  }
+
+  h2,
+  h3 {
+    @extend %general-heading-small;
+    margin-bottom: 0;
+    margin-top: $margin-between-text-elements;
+    font-weight: $headings-weight;
+  }
+
+  .block-head .block-title {
+    width: 100%;
+    max-width: 100%;
+  }
+
+  &:not(.block-single-reference) {
+    .blocks-gallery-item figcaption {
+      background: none;
+      color: $color-white;
+    }
+  }
+
+  .container {
+    padding-top: 0;
+    padding-left: 0;
+    padding-right: 0;
+  }
+
+  .wp-block-image {
+    margin-top: 6rem;
+    margin-bottom: 6rem;
+  }
+
+  @media (max-width: 700px) {
+    iframe[width="1140"] {
+      max-height: 450px !important;
+      min-height: 400px !important;
+    }
+  }
+
+  .cat a:not(.button):not(.url):not(.no-text-link):not(.cta-link):not(.wp-block-button__link) {
+    background-image: none !important;
+    margin: 0 13px 13px 0;
+    font-size: var(--font-size-general-small);
+    border: 1px solid $color-midnight-blue;
+    // stylelint-disable-next-line
+    display: inline-flex !important;
+    padding: 7px 17px !important;
+    line-height: 1;
+    color: $color-midnight-blue;
+    text-decoration: none;
+    box-shadow: none;
+    font-weight: 400;
+    align-items: center;
+    justify-content: center;
+
+    &:hover {
+      border-color: $color-midnight-blue;
+      background: $color-midnight-blue;
+      color: $color-mint;
+    }
+
+    &::after {
+      display: none;
+    }
+  }
+
+  ul.tags {
+    overflow: hidden;
+    margin: 0;
+    padding: 0;
+    padding-left: 0;
+
+    li {
+      margin-left: 0;
+      margin-right: 10px;
+      margin-bottom: 10px;
+      padding-left: 0;
+      display: inline-block;
+      margin-top: 0;
+
+      a {
+        font-size: 13px;
+        display: inline-block;
+        border: solid rgba(6, 22, 41, .2);
+        color: $color-tags-text;
+        border-width: 1px;
+        border-radius: 2px;
+        padding: .2em .6em !important;
+        background-image: none !important;
+        font-weight: 400;
+
+        &:not([href*="dude.fi"]):not(.button):not(.url):not(.no-text-link):not(.cta-link):not(.wp-block-button__link):not(.post-edit-link):not(.contact-detail),
+        .block-hero.wp-block-columns .hero-description button,
+        .block-hero.wp-block-columns .hero-description button.open-chat,
+        .block-timeline.wp-block-columns .active a:not(.button):not(.url):not(.no-text-link):not(.cta-link):not(.wp-block-button__link),
+        .block-timeline.wp-block-columns .col a:not(.button):not(.url):not(.no-text-link):not(.cta-link):not(.wp-block-button__link),
+        .block-title-left-text-right.wp-block-columns li a:not(.button):not(.url):not(.no-text-link):not(.cta-link):not(.wp-block-button__link):not(.post-edit-link):not(.contact-detail),
+        .block.block-hero .hero-description button,
+        .block.block-hero .hero-description button.open-chat,
+        .block.block-timeline .active a:not(.button):not(.url):not(.no-text-link):not(.cta-link):not(.wp-block-button__link),
+        .block.block-timeline .col a:not(.button):not(.url):not(.no-text-link):not(.cta-link):not(.wp-block-button__link),
+        .block.block-title-left-text-right li a:not(.button):not(.url):not(.no-text-link):not(.cta-link):not(.wp-block-button__link):not(.post-edit-link):not(.contact-detail),
+        .wp-block-columns p a:not(.button):not(.url):not(.no-text-link):not(.cta-link):not(.wp-block-button__link):not(.post-edit-link):not(.contact-detail):not([rel]) {
+          padding: .2em .6em !important;
+          background-image: none !important;
+        }
+      }
+
+      a::after {
+        display: none;
+      }
+
+      a:hover {
+        background: transparent;
+        border-color: $color-midnight-blue;
+      }
+    }
+
+    .entry-content ol li,
+    .entry-content ul li {
+      margin-left: 3rem;
+
+      @media (max-width: 1000px) {
+        margin-left: 2rem;
+      }
+    }
+
+    figure figcaption,
+    cite {
+      @include responsive-font(15px, 17px);
+      max-width: 1100px;
+      padding-top: 4rem;
+      padding-bottom: 4rem;
+      padding-left: 2rem;
+      padding-right: 2rem;
+      font-weight: 400;
+    }
+
+    .wp-block-quote cite {
+      padding-left: 0;
+      padding-top: 2rem;
+      padding-bottom: 0;
+    }
+
+    .gform_wrapper .gform_footer input.button,
+    .gform_wrapper .gform_page_footer input.button,
+    .gform_wrapper .gform_footer input[type=submit],
+    .gform_wrapper .gform_page_footer input[type=submit] {
+      @extend %default;
+    }
+
+    .gform_wrapper .gform_footer {
+      margin-top: 2rem;
+      padding-top: 0;
+    }
+
+    @media (min-width: 1100px) {
+      .gform_wrapper {
+        padding-right: $padding-default-cols;
+      }
+    }
+
+    ul.gform_fields input,
+    ul.gform_fields textarea,
+    ul.gform_fields input:not([type='radio']):not([type='checkbox']):not([type='submit']):not([type='button']):not([type='image']):not([type='file']) {
+      max-width: 100%;
+      width: 100%;
+      // border: 1px solid $color-superlightgrey;
+      padding: 2rem;
+
+      &#input_3_1 {
+        margin-bottom: 3rem;
+      }
+
+      &:focus {
+        outline: 0;
+        border-color: $color-midnight-blue;
+      }
+
+      @media (max-width: 1300px) {
+        display: block !important;
+        width: 100% !important;
+        max-width: 100% !important;
+      }
+
+      &::placeholder {
+        opacity: 1;
+        color: $color-midnight-blue;
+      }
+    }
+
+    ul.gform_fields {
+      @media (max-width: 1300px) {
+        display: block;
+        width: 100%;
+        max-width: 100%;
+      }
+
+      #field_2_7 {
+        width: 100% !important;
+      }
+
+      #field_2_1 {
+        margin-bottom: 3rem;
+      }
+
+      > li {
+        margin-top: 0;
+        padding-top: 0;
+        padding-left: 0;
+        margin-bottom: 0;
+      }
+
+      > li label,
+      div:not(.gfield_time_hour):not(.gfield_time_minute):not(.gfield_time_ampm):not(.ginput_container_date):not(.ginput_quantity):not(.datepicker) {
+        margin-top: 0;
+      }
+    }
+
+    ul.gform_fields,
+    ul.gform_fields li,
+    ul.gform_fields span {
+      margin: 0;
+      padding: 0;
+      border: 0;
+    }
+
+    ul.gform_fields li label,
+    ul.gform_fields li h2 {
+      @extend %h4;
+      font-weight: 400;
+      margin-top: 4rem;
+      margin-bottom: 1rem;
+
+      @media (max-width: 1300px) {
+        margin-top: 4rem !important;
+        margin-bottom: 1rem;
+      }
+
+      &:first-of-type {
+        margin-top: 0;
+      }
+    }
+  }
+}
+
+.block.block-single:not(.block-single-reference) > .post > .entry-author,
+.entry-author {
+  padding-top: $padding-blocks-medium;
+  max-width: 1300px;
+  margin-left: auto;
+  margin-right: auto;
+  display: flex;
+  align-items: flex-end;
+
+  @media (max-width: 1400px) {
+    padding-left: 2rem;
+    padding-right: 2rem;
+  }
+
+  @media (max-width: 600px) {
+    flex-wrap: wrap;
+  }
+
+  .author-image {
+    margin-right: 5rem;
+    display: flex;
+    justify-content: flex-end;
+
+    @media (max-width: 760px) {
+      margin-right: 2rem;
+      width: 38%;
+    }
+
+    @media (max-width: $container-mobile) {
+      margin: 0;
+    }
+
+    @media (max-width: 600px) {
+      width: 100%;
+    }
+  }
+
+  img {
+    max-width: 48rem;
+    height: auto;
+    width: 100%;
+    min-width: 35rem;
+
+    @media (max-width: 760px) {
+      min-width: 40rem;
+    }
+
+    @media (max-width: 600px) {
+      min-width: 0;
+    }
+  }
+
+  .author-info {
+    display: flex;
+    align-items: center;
+    height: 100%;
+    align-self: center;
+    padding-bottom: $padding-blocks-small;
+    padding-top: $padding-blocks-small;
+
+    @media (max-width: 760px) {
+      width: 62%;
+    }
+
+    @media (max-width: 600px) {
+      width: 100%;
+      padding-top: 4rem;
+    }
+
+    h3 {
+      @extend %general-heading-small;
+      font-weight: $headings-weight;
+      margin: 0 0 .5rem;
+    }
+
+    p {
+      max-width: 760px;
+    }
+
+    p.job-title {
+      opacity: .5;
+      margin-top: 0;
+      margin-bottom: $margin-between-text-elements;
+      font-size: var(--font-size-general-small);
+
+      @media (min-width: 850px) {
+        font-size: 20px;
+      }
+    }
+
+    .cta-link {
+      @media (max-width: 850px) {
+        font-size: var(--font-size-general-small);
+      }
+    }
+
+    p.person-description {
+      margin: 0;
+      font-size: var(--font-size-general-small);
+
+      @media (min-width: 850px) {
+        font-size: 20px;
+      }
+    }
+  }
+}

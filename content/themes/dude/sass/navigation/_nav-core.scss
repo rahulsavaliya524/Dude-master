@@ -1,0 +1,46 @@
+// ---------------------------------------------------------
+// Site navigation core
+//
+// The main layout for the website navigation, for both mobile
+// and desktop devices.
+// -----------------------------------------------------------
+.nav-primary .menu-items,
+.nav-primary-desktop .menu-items {
+  position: relative;
+  z-index: 9999;
+
+  ul,
+  li {
+    display: block;
+    list-style: none;
+    margin: 0;
+    padding: 0;
+    line-height: normal;
+    direction: ltr;
+    text-align: left;
+  }
+
+  li,
+  a,
+  button {
+    position: relative;
+  }
+
+  .disabled {
+    cursor: not-allowed;
+  }
+
+  li > h1,
+  li > h2,
+  li > h3,
+  li > h4,
+  li > h5,
+  li > h6 {
+    margin: 0;
+    padding: 0;
+  }
+}
+
+.no-js .nav-toggle {
+  display: none;
+}

@@ -1,0 +1,271 @@
+/* stylelint-disable selector-max-class, selector-max-specificity, no-descending-specificity */
+.block.block-hero {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: center;
+  z-index: 1;
+  color: $color-white;
+  padding-top: 0;
+  padding-bottom: 0;
+  background-color: $color-white;
+  height: 80vh;
+  overflow: hidden;
+  min-height: 56rem;
+
+  @media (min-width: $container-ipad-landscape) {
+    min-height: 90rem;
+  }
+
+  @media (max-width: 760px) {
+    height: auto;
+    padding-top: $padding-blocks-large;
+    padding-bottom: $padding-blocks-large;
+
+    @media (max-width: $container-mobile) {
+      padding-top: $padding-blocks-medium;
+      padding-bottom: $padding-blocks-medium;
+    }
+  }
+
+  .block-pre-title {
+    @extend %default;
+    margin: 0 0 4rem;
+
+    @media (min-width: 760px) {
+      font-size: 20px;
+    }
+  }
+
+  .content {
+    max-width: 870px;
+    // max-width: 60rem;
+  }
+
+  .featured-image {
+    z-index: 0;
+  }
+
+  @media (max-width: 1160px) {
+    flex-wrap: wrap;
+  }
+
+  .button-wrapper {
+    margin-top: $margin-between-grid-columns;
+    margin-bottom: 0;
+  }
+
+  .button-wrapper .button {
+    @media (max-width: 600px) {
+      font-size: var(--font-size-general-small);
+    }
+  }
+
+  .hero-title {
+    @extend %general-heading-large;
+  }
+
+  h1 {
+    color: $color-white;
+    margin-top: 0;
+
+    @media (min-width: $container-ipad-landscape) {
+      font-size: $font-size-general-headings-desktop;
+    }
+  }
+
+  p {
+    &:not(.button-wrapper) {
+      color: $color-white;
+    }
+
+    @media (min-width: $container-ipad-landscape) {
+      font-size: $font-size-general-large;
+    }
+  }
+
+  .container {
+    overflow: visible;
+    position: relative;
+    z-index: 2;
+
+    // Offset nav height
+    transform: translateY(65px);
+
+    @media (min-width: $container-mobile) {
+      transform: translateY(46px);
+    }
+  }
+
+  .hero-description {
+    margin-bottom: 5rem;
+    width: 100%;
+
+    button,
+    button.open-chat {
+      @include link();
+      font-weight: 700;
+      background: transparent;
+      border-radius: 0;
+      padding: 0;
+      border: 0;
+
+      &:hover {
+        cursor: pointer;
+      }
+    }
+
+    p,
+    button {
+      font-weight: 400;
+      max-width: 80rem;
+
+      @media (max-width: 600px) {
+        font-size: var(--font-size-general-small);
+      }
+    }
+  }
+
+  .shade {
+    background-color: $color-shade-background;
+    opacity: 1;
+    z-index: 3;
+
+    // Ensure contrast on mobile devices {
+    @media (max-width: 760px) {
+      background-color: $color-shade-background-mobile;
+    }
+  }
+
+  // Merch hero
+  &.block-hero-reference.block-hero-merch,
+  &.block-hero-merch {
+    min-height: 0;
+    height: auto;
+
+    @media (max-width: 900px) {
+      padding-top: 0;
+      padding-bottom: 0;
+    }
+
+    > .container {
+      transform: none;
+      padding-top: 10rem;
+      padding-bottom: 10rem;
+
+      @media (max-width: 900px) {
+        padding-bottom: 5rem;
+        padding-top: 15rem;
+
+        /* stylelint-disable-next-line */
+        .hero-description {
+          margin-bottom: 0;
+        }
+      }
+    }
+
+    .hero-description p {
+      color: $color-paragraphs-light;
+    }
+
+    .details {
+      opacity: .7;
+      line-height: 1.5;
+      transition: all 1s;
+      margin-bottom: $padding-blocks-medium;
+
+      a {
+        @include link($color: var(--color-white), $color-hover: var(--color-white), $color-underline: rgba(255, 255, 255, .3), $color-underline-hover: var(--color-mint));
+      }
+
+      a:hover {
+        border-color: $color-mint;
+      }
+    }
+
+    .details:hover {
+      opacity: 1;
+    }
+  }
+}
+
+.is-centered {
+  text-align: center;
+
+  .hero-description,
+  .hero-description p {
+    margin-right: auto;
+    margin-left: auto;
+  }
+
+  .content {
+    max-width: 870px;
+    margin-left: auto;
+    margin-right: auto;
+  }
+}
+
+.block.block-hero.block-hero-light {
+  p,
+  .button {
+    @extend %general-heading-small;
+  }
+
+  &.block-hero-basic {
+    min-height: 0;
+    height: auto;
+    padding-top: $padding-blocks-large;
+    overflow: visible;
+
+    @media (max-width: $container-mobile) {
+      padding-top: $padding-blocks-medium;
+    }
+  }
+
+  + .block.block-wide-text {
+    padding-top: $padding-blocks-medium;
+  }
+
+  h1,
+  h2,
+  p {
+    color: $color-midnight-blue;
+  }
+}
+
+body.page-id-6117 .block-hero.block-hero-light {
+  .shade {
+    background-color: $color-shade-background-mobile;
+  }
+
+  h1,
+  h2,
+  p {
+    color: $color-white;
+  }
+}
+
+// New 2021 thanks page
+/* stylelint-disable-next-line */
+body.page-id-5973 .block.block-hero-merch-thanks {
+  background-color: transparent !important;
+}
+
+body.page-id-5973 {
+  .content-area {
+    /* stylelint-disable-next-line */
+    background-color: #161616;
+  }
+}
+
+.ouroboros {
+  top: -77px;
+  position: absolute;
+  left: 50%;
+  transform: translateX(-50%);
+  width: 1680px;
+  height: auto;
+
+  path {
+    fill: #1b1b1b;
+  }
+}

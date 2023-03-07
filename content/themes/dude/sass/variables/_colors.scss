@@ -1,0 +1,97 @@
+// Brand 2020
+$color-cobalt-blue: #4d4aff;
+$color-midnight-blue: #131a50;
+$color-midnight: #161826;
+$color-mint: #7effe1;
+$color-mint-alternative: #4cd9b8;
+$color-mint-alternative-hover: darken(#4cd9b8, 15%);
+
+// Brand colors
+$color-black: $color-midnight;
+$color-white: #fff;
+$color-default-background: #f0f0f0;
+$color-white-two: #f8f8f8;
+$color-button-white-hover: #f2f2f2;
+
+// Base colors
+$color-pitch-black: #000;
+$color-links: $color-midnight;
+$color-hover: $color-mint;
+$color-paragraphs-greyish-blue: #545773;
+$color-greyish-blue: #363957;
+$color-paragraphs: $color-paragraphs-greyish-blue;
+$color-paragraphs-light: #e3e5ec;
+$color-body: $color-midnight-blue;
+$color-headings: $color-midnight-blue;
+$color-darkgrey: #4f5964;
+$color-placeholder: #ababab;
+$color-error: #903a37;
+$color-survey-start-button-background: #232527;
+$color-survey-start-button-text: #e3e4e6;
+$color-survey-header-text: rgba(#333, .8);
+$color-survey-selected-choice: #263d2e;
+$color-survey-wrapper-background: rgba(#000, .05);
+$color-required-form-input: darken($color-mint, 35%);
+$color-img-background: #d8d8d8;
+$color-tags-text: rgba($color-midnight-blue, .6);
+$color-darkgrey: #444;
+$color-github-link: #0366d6;
+$color-github-css: #563d7c;
+$color-github-shell: #89e051;
+$color-github-php: #4f5d95;
+$color-white-two: #f1f1f1;
+$color-disabled: #bbb;
+$color-shade-background: rgba($color-midnight, .25);
+$color-shade-background-mobile: rgba($color-midnight, .45);
+$color-shade-background-hero-single: rgba($color-midnight, .5);
+$color-captions: rgba(#4b4b5a, .9);
+$color-pre: #ddd;
+$color-hover-social: darken($color-mint, 32%);
+$color-edit-link: #999;
+$color-edit-link-background: #fafafa;
+$color-edit-link-background-hover: #efefef;
+$forms-focus-border: rgba(#222, 1);
+$color-almost-black: #222;
+$color-green-confirmation: #59c450;
+$color-simplepay-modal-text: #a6a6a6;
+$color-simplepay-modal-text-hover: #8d8d8d;
+$color-simplepay-form-description: #666;
+$color-stripe-pay-button-background: #24b47e;
+$color-stripe-pay-button-background-hover: #249a65;
+$gray-coupon-apply-button-hover: #888;
+$color-simplepay-test-mode: #f7e633;
+
+// CSS vars (2021)
+:root {
+  // Brand colors
+  --color-cobalt-blue: #{$color-cobalt-blue};
+  --color-midnight-blue: #{$color-midnight-blue};
+  --color-midnight: #{$color-midnight};
+  --color-mint: #{$color-mint};
+  --color-mint-alternative: #{$color-mint-alternative};
+  --color-mint-alternative-hover: #{$color-mint-alternative-hover};
+  --color-mint-light: #edfaf7;
+
+  // Brand colors
+  --color-black: #{$color-black};
+  --color-white: #{$color-white};
+  --color-default-background: #{$color-default-background};
+  --color-white-two: #{$color-white-two};
+  --color-button-white-hover: #{$color-button-white-hover};
+
+  // Base colors
+  --color-pitch-black: #{$color-pitch-black};
+  --color-links: #{$color-links};
+  --color-hover: #{$color-hover};
+  --color-paragraph: #{$color-paragraphs};
+  --color-paragraph-light: #{$color-paragraphs-light};
+  --color-body: #{$color-body};
+  --color-heading: #{$color-headings};
+  --color-darkgrey: #{$color-darkgrey};
+  --color-placeholder: #{$color-placeholder};
+
+  // Element states
+  --color-error: #cc2e2e;
+  --color-success: #21aa14;
+  --color-warning: #cc752e;
+}

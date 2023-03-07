@@ -1,0 +1,405 @@
+/* stylelint-disable selector-max-class, selector-max-specificity, no-descending-specificity */
+// -----------------------------------------------------------
+// General
+//
+// This file is meant for general styles and containers
+// that apply everywhere throughout the website. Add more
+// always repeating elements right below.
+// -----------------------------------------------------------
+
+// Correct Viewport Height on Mobile
+// Source: https://css-tricks.com/the-trick-to-viewport-units-on-mobile/
+:root {
+  --vh: 1vh;
+}
+
+// Default structural element
+.block {
+  @include background-cover();
+  background-color: $color-white;
+  position: relative;
+  min-height: 100px;
+  max-width: $layout-max-width;
+  padding-left: 0;
+  padding-right: 0;
+  padding-top: $padding-blocks-large;
+  padding-bottom: $padding-blocks-large;
+
+  // Sometimes browsers render the light color behind blocks
+  margin-top: -1px;
+
+  @media (max-width: $grid-base-size + 150px) {
+    padding-left: $padding-default-cols-ipad;
+    padding-right: $padding-default-cols-ipad;
+  }
+
+  @media (max-width: $container-ipad) {
+    padding-left: $padding-default-cols-mobile;
+    padding-right: $padding-default-cols-mobile;
+    padding-top: $padding-blocks-medium;
+    padding-bottom: $padding-blocks-medium;
+  }
+
+  // @media (max-width: $container-mobile) {
+  //   padding-top: $padding-blocks-small;
+  //   padding-bottom: $padding-blocks-small;
+  // }
+}
+
+// Pages with alternate module colors
+body.page.page-id-9 {
+  .block.block-cta-with-phone-input,
+  .block.block-two-images {
+    background: $color-midnight;
+    margin-bottom: -1px;
+  }
+
+  .block.block-title-left-text-right,
+  .block.block-our-services,
+  .block.block-references {
+    background: $color-midnight;
+    margin-bottom: -1px;
+
+    h2 {
+      color: $color-mint;
+    }
+
+    .floating-actions button,
+    h3 {
+      color: $color-white;
+    }
+
+    p {
+      color: $color-paragraphs-light;
+    }
+
+    .cta-link {
+      color: $color-mint;
+
+      &::after {
+        background-color: $color-mint;
+      }
+    }
+  }
+}
+
+// Pages where all blocks are dark
+body.post-type-archive-reference,
+body.page-id-9,
+body.post-type-archive-merch {
+  .content-area,
+  .block {
+    background-color: $color-midnight;
+  }
+}
+
+// Design page is only partially dark
+body.page-id-4485 {
+  .block.block-cta-with-phone-input {
+    background: $color-midnight;
+  }
+
+  .block.block-references {
+    background: $color-midnight;
+
+    h2 {
+      color: $color-mint;
+    }
+
+    .floating-actions button,
+    p,
+    h3 {
+      color: $color-white;
+    }
+
+    .cta-link {
+      color: $color-mint;
+
+      &::after {
+        background-color: $color-mint;
+      }
+    }
+  }
+}
+
+body.post-type-archive,
+body.page-id-9 {
+  .block.block-cta-with-phone-input {
+    background: $color-midnight;
+  }
+}
+
+// 404 stuff
+.error404 .block.block-footer.site-footer {
+  padding-top: 8rem;
+}
+
+// Default shade on top of blocks
+.shade {
+  background: #333;
+  position: absolute;
+  width: 100%;
+  height: 100%;
+  top: 0;
+  left: 0;
+  z-index: 0;
+  opacity: .15;
+}
+
+// Site wrapper
+.site {
+  max-width: 100%;
+  margin-left: auto;
+  margin-right: auto;
+  position: relative;
+  overflow: hidden;
+}
+
+// Containers
+.container,
+%container {
+  margin: 0 auto;
+  padding-top: 0;
+  padding-bottom: 0;
+  padding-left: 0;
+  padding-right: 0;
+  max-width: $grid-base-size;
+  width: 100%;
+  margin-left: auto;
+  margin-right: auto;
+}
+
+// Clear block containers by default
+.site-main .container {
+  overflow: hidden;
+  clear: both;
+}
+
+// Meta actions
+.entry-footer {
+  overflow: hidden;
+  clear: both;
+  display: block;
+
+  &.entry-footer-guest-post {
+    margin-bottom: 5rem;
+  }
+}
+
+// Global link helper
+// This is useful in services -type of areas where the whole block is a link
+// Remember to define aria-label or screen-reader-text for accessibility
+a.global-link {
+  width: 100%;
+  height: 100%;
+  z-index: 3;
+  position: absolute;
+  top: 0;
+  left: 0;
+}
+
+// Dude specific general typography related styles
+.block-title {
+  @include responsive-font($font-size-general-headings-mobile, $font-size-general-headings-desktop);
+  margin-bottom: $margin-between-text-elements;
+  margin-top: 0;
+  position: relative;
+
+  @media (min-width: $container-ipad-landscape) {
+    font-size: $font-size-general-headings-desktop;
+  }
+
+  &.block-title-large {
+    @extend %general-heading-alt;
+  }
+
+  &.block-title-small {
+    @extend %general-heading-small;
+  }
+}
+
+%general-heading-cta {
+  @include responsive-font($font-size-general-headings-mobile, $font-size-general-headings-medium-ctas);
+  margin-bottom: 2rem;
+  margin-top: 0;
+  line-height: 1.35;
+
+  @media (max-width: $container-mobile) {
+    font-size: 24px;
+    font-weight: $headings-weight;
+  }
+
+  @media (min-width: $container-ipad-landscape) {
+    font-size: $font-size-general-headings-medium-ctas;
+  }
+}
+
+%general-heading-alt {
+  @include responsive-font($font-size-general-headings-mobile, 54px);
+  margin-top: 0;
+  line-height: 1.35;
+  font-weight: $headings-weight;
+
+  @media (max-width: $container-mobile) {
+    font-size: 24px;
+    font-weight: $headings-weight;
+  }
+
+  @media (min-width: 1300px) {
+    font-size: 54px;
+  }
+}
+
+%general-heading-large {
+  @include responsive-font(36px, $font-size-general-headings-desktop);
+  margin-bottom: 4rem;
+  margin-top: 0;
+  line-height: 1.5;
+  font-weight: 400;
+
+  @media (max-width: $container-mobile) {
+    font-size: 36px;
+    font-weight: $headings-weight;
+  }
+
+  @media (min-width: $container-ipad-landscape + 200px) {
+    font-size: $font-size-general-headings-desktop;
+  }
+}
+
+%general-heading-small {
+  @include responsive-font(20px, 24px);
+  margin-bottom: 2rem;
+  margin-top: 0;
+  line-height: 1.5;
+  font-weight: 400;
+
+  @media (min-width: $container-ipad-landscape) {
+    font-size: 24px;
+  }
+}
+
+.large-text,
+%large-text {
+  @extend %general-heading-small;
+}
+
+.block-head {
+  padding: 0;
+
+  p.read-more {
+    margin: 0;
+  }
+}
+
+.block-pre-title {
+  margin-top: 0;
+  margin-bottom: $margin-between-text-elements;
+}
+
+// Positions
+.is-centered {
+  text-align: center;
+}
+
+// Better edit link
+.edit-link {
+  text-align: left;
+  width: 100%;
+  display: block;
+  clear: both;
+  max-width: 100%;
+  min-width: 0;
+  margin-bottom: 0;
+  margin-top: 2rem;
+  overflow: hidden;
+  transition: all .22s;
+
+  a {
+    font-weight: 700;
+    clear: both;
+    text-align: center;
+    transition: all .22s;
+    display: block;
+    padding: 2rem;
+    background: $color-edit-link-background;
+    color: $color-edit-link;
+    border: 2px dashed $color-edit-link;
+    margin: 0;
+    text-decoration: none;
+    max-width: 100%;
+  }
+
+  a:hover {
+    color: $color-edit-link;
+    background: $color-edit-link-background-hover;
+  }
+}
+
+// Legacy for old blog posts
+.fa-thumbs-up {
+  background-image: url('../svg/thumbs-up.svg');
+  background-repeat: no-repeat;
+  background-position: center;
+  background-size: 24px 24px;
+  margin-right: 7px !important;
+  font-size: 24px;
+  width: 24px;
+  height: 24px;
+  display: inline-flex;
+  position: relative;
+  top: 4px;
+}
+
+.fa-thumbs-down {
+  background-image: url('../svg/thumbs-down.svg');
+  background-repeat: no-repeat;
+  background-position: center;
+  background-size: 24px 24px;
+  margin-right: 7px !important;
+  font-size: 24px;
+  width: 24px;
+  height: 24px;
+  display: inline-flex;
+  position: relative;
+  top: 4px;
+}
+
+// Block title exception
+.archive-head .block-title.block-title.block-title-archive {
+  @extend %h2;
+}
+
+@media (min-width: 1300px) {
+  .archive-head .block-title.block-title.block-title-archive {
+    font-size: 54px;
+  }
+}
+
+// Ensure Stripe/WP Simple Pay recatpcha is always hidden
+.grecaptcha-badge {
+  /* stylelint-disable-next-line */
+  display: none !important;
+}
+
+// GitHub link
+body .gutenberg-content a.github-link,
+body .gutenberg-content a:active.github-link,
+body .gutenberg-content a:link.github-link,
+body .gutenberg-content a:hover.github-link,
+body .gutenberg-content a:focus.github-link,
+body .gutenberg-content a:visited.github-link {
+  background-image: url('../svg/github-link.svg');
+  background-position: 0 center;
+  background-repeat: no-repeat;
+  background-size: 22px 22px;
+  border: 0;
+  // stylelint-disable-next-line
+  color: var(--color-pitch-black) !important;
+  font-weight: 600;
+  padding-left: 28px;
+  text-decoration: none;
+  text-shadow: unset;
+  transition: .3s;
+  box-shadow: unset;
+}

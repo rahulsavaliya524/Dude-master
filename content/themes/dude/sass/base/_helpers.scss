@@ -1,0 +1,158 @@
+// ---------------------------------------------------------
+// Helpers
+//
+// Mixins and other essentials for global theme development.
+// ---------------------------------------------------------
+
+/* stylelint-disable declaration-property-unit-allowed-list */
+// CSS Grid mixin with flexbox fallback for IE and Edge
+@mixin grid($columns, $fr: 1, $min_height: 0, $max_height: auto, $gutter_x: 16px, $gutter_y: 16px) {
+  display: grid;
+  grid-template-columns: repeat($columns, #{$fr}fr);
+
+  /* autoprefixer: off */
+  grid-auto-rows: minmax($min_height, $max_height);
+  grid-column-gap: $gutter_x;
+  grid-row-gap: $gutter_y;
+
+  // For browser versions that do not support CSS grid
+  @supports not (display: grid) {
+    display: flex;
+    flex-wrap: wrap;
+    overflow: hidden;
+
+    > div {
+      $grid_width: 100% / $columns;
+      $offset: $gutter_x / 2;
+      width: calc(#{$grid_width} - #{$offset});
+      margin-right: $gutter_x;
+      margin-bottom: $gutter_y;
+    }
+  }
+
+  // Internet Explorer
+  @media all and (-ms-high-contrast: none), (-ms-high-contrast: active) {
+    display: flex;
+    flex-wrap: wrap;
+    overflow: hidden;
+
+    > div {
+      $grid_width: 100% / $columns;
+      $offset: $gutter_x / 2;
+      width: calc(#{$grid_width} - #{$offset});
+      margin-right: $offset;
+      margin-bottom: $gutter_y;
+
+      @media (max-width: 870px) {
+        width: 100%;
+      }
+    }
+  }
+
+  // Edge
+  @supports (-ms-ime-align: auto) {
+    display: flex;
+    flex-wrap: wrap;
+    overflow: hidden;
+
+    > div {
+      $grid_width: 100% / $columns;
+      width: calc(#{$grid_width} - #{$gutter_x});
+      margin-right: $gutter_x;
+      margin-bottom: $gutter_y;
+
+      @media (max-width: 870px) {
+        width: 100%;
+      }
+    }
+  }
+}
+
+// Backgrounds
+@mixin background-cover() {
+  background: {
+    size: cover;
+    repeat: no-repeat;
+    position: center;
+  }
+}
+
+// Positioning
+@mixin vertical-align {
+  position: relative;
+  top: 50%;
+  transform: translateY(-50%);
+  transform-style: preserve-3d;
+}
+
+// Helper mixin for self-hosted fonts
+@mixin fontFace($family, $src, $weight: normal, $style: normal) {
+  @font-face {
+    font-family: $family;
+    src: url('#{$src}.eot');
+    src: url('#{$src}.eot?#iefix') format('embedded-opentype'), url('#{$src}.woff') format('woff'), url('#{$src}.woff2') format('woff2'), url('#{$src}.ttf') format('truetype'), url('#{$src}.svg##{$family}') format('svg');
+    font-style: $style;
+    font-weight: $weight;
+  }
+}
+
+// Viewport sized typography with minimum and maximum values
+// Based on an example here: https://css-tricks.com/snippets/css/fluid-typography/
+
+@function strip-unit($value) {
+  @return $value / ($value * 0 + 1);
+}
+
+@mixin responsive-font($min-font-size, $max-font-size, $min-vw: 320px, $max-vw: 1920px) {
+  $u1: unit($min-vw);
+  $u2: unit($max-vw);
+  $u3: unit($min-font-size);
+  $u4: unit($max-font-size);
+
+  @if $u1 == $u2 and $u1 == $u3 and $u1 == $u4 {
+    font-size: $min-font-size;
+
+    @media screen and (min-width: $min-vw) {
+      font-size: calc(#{$min-font-size} + #{strip-unit($max-font-size - $min-font-size)} * ((100vw - #{$min-vw}) / #{strip-unit($max-vw - $min-vw)}));
+    }
+
+    @media screen and (min-width: $max-vw) {
+      font-size: $max-font-size;
+    }
+  }
+}
+
+// A natural box layout model to all elements
+// Update: http://css-tricks.com/inheriting-box-sizing-probably-slightly-better-best-practice/
+html,
+*,
+*::before,
+*::after {
+  /* autoprefixer: ignore next */
+  box-sizing: border-box;
+}
+
+img {
+  /* autoprefixer: ignore next */
+  box-sizing: content-box;
+}
+
+@mixin aspect-ratio($width, $height) {
+  position: relative;
+
+  &::before {
+    display: block;
+    content: '';
+    width: 100%;
+    padding-top: ($height / $width) * 100%;
+  }
+
+  > .content {
+    position: absolute;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+  }
+}
+/* stylelint-enable declaration-property-unit-allowed-list */

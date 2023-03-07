@@ -1,0 +1,265 @@
+// ---------------------------------------------------------
+// Accessibility
+//
+// A hidden screen reader for readers, focus elements for
+// vision impaired and other useful a11y CSS hacks.
+// ---------------------------------------------------------
+/* stylelint-disable selector-max-class, selector-max-specificity, no-descending-specificity, selector-max-combinators, selector-max-compound-selectors, selector-max-pseudo-class, selector-attribute-quotes, max-nesting-depth, number-max-precision, no-unknown-animations */
+
+// Variables
+$focus-outline-color: #4d4aff;
+$focus-text-color: #000;
+$focus-outline-style: 2px solid;
+$focus-outline-style-large-elements: 4px solid;
+$color-focus-skip-link: #21759b;
+
+// Text meant only for screen readers.
+%screen-reader-text,
+.screen-reader-text {
+  border: 0;
+  clip: rect(1px, 1px, 1px, 1px);
+  clip-path: inset(50%);
+  height: 1px;
+  margin: -1px;
+  overflow: hidden;
+  padding: 0;
+  position: absolute !important;
+  width: 1px;
+  word-wrap: normal !important; // Many screen reader and browser combinations announce broken words as they would appear visually.
+
+  &.skip-link {
+    margin: 5px;
+
+    &:focus {
+      background: $color-white;
+      color: $focus-outline-color;
+      outline: 2px solid $focus-outline-color;
+    }
+  }
+
+  &:focus {
+    background-color: $color-white-two;
+    border-radius: 0;
+    box-shadow: 0 0 2px 2px rgba(#000, .6);
+    clip: auto !important;
+    clip-path: none;
+    color: $color-focus-skip-link;
+    display: block;
+    font-size: 1.7rem;
+    font-weight: 700;
+    height: auto;
+    left: 5px;
+    line-height: normal;
+    padding: 15px 23px 14px;
+    text-decoration: none;
+    top: 5px;
+    width: auto;
+    z-index: 100000; // Above WP toolbar.
+  }
+}
+
+// Do not show the outline on the skip link target.
+[tabindex="-1"]:focus {
+  outline: 0;
+}
+
+// Suppress focus ring on for mouse and touch users for visual reasons
+[data-whatinput="mouse"] *:focus,
+[data-whatinput="touch"] *:focus {
+  outline: none;
+}
+
+// Visually distinct focus color on keyboard
+[data-whatinput="keyboard"] {
+  input:focus,
+  button:focus,
+  select:focus,
+  nav ul li a:focus,
+  div[tabindex]:focus,
+  a:focus {
+    // Normalize the look of the outline across browsers
+    // @link https://a11yproject.com/posts/never-remove-css-outlines/
+    outline: $focus-outline-style $focus-outline-color;
+    color: $focus-text-color;
+    opacity: 1;
+    z-index: 99;
+  }
+
+  // A bit better focus for large elements
+  a.global-link:focus {
+    outline: $focus-outline-style-large-elements $focus-outline-color;
+  }
+}
+
+// Make theme keyboard accessible with no Javascript enabled
+.no-js *:focus {
+  outline: $focus-outline-style $focus-outline-color;
+}
+
+// Links within content must be underlined
+// @link https://make.wordpress.org/themes/handbook/review/accessibility/required/#content-links
+.entry-content a {
+  text-decoration: underline;
+
+  &:hover,
+  &:focus {
+    text-decoration: none;
+  }
+}
+
+// Normalize the look of the outline across browsers
+// @link https://a11yproject.com/posts/never-remove-css-outlines/
+*:focus {
+  outline: $focus-outline-style-large-elements $focus-outline-color;
+}
+
+// Navigation trap hack
+// @link https://css-tricks.com/a-css-approach-to-trap-focus-inside-of-an-element/
+.lastfocusableitem:not(:focus-within) {
+  color: $color-white;
+  transition: color .01s;
+}
+
+// Prevent tabbing into hidden content
+nav[aria-expanded="false"] {
+  visibility: hidden;
+
+  * {
+    visibility: hidden;
+  }
+}
+
+// Add icon to external links
+.block p a[href*="//"]:not([href*="www.dude.fi"]):not([href*="dude.vaiheessa.fi"]):not([href*="dude.test"]):not([href*="localhost:3000"]):not(.contact-detail):not(.button):not(.button):not(.url):not(.no-text-link):not(.cta-link):not(.wp-block-button__link):not(.post-edit-link):not(.contact-detail):not(.no-external-link-indicator):not(.wp-block-button__link),
+.block li a[href*="//"]:not([href*="www.dude.fi"]):not([href*="dude.vaiheessa.fi"]):not([href*="dude.test"]):not([href*="localhost:3000"]):not(.contact-detail):not(.button):not(.button):not(.url):not(.no-text-link):not(.cta-link):not(.wp-block-button__link):not(.post-edit-link):not(.contact-detail):not(.no-external-link-indicator):not(.wp-block-button__link):not(#spr-button),
+a[href*="//"]:not([href*="www.dude.fi"]):not([href*="dude.vaiheessa.fi"]):not([href*="dude.test"]):not([href*="localhost:3000"]):not(.contact-detail):not(.button):not(.no-external-link-indicator):not(.wp-block-button__link):not(#spr-button) {
+  display: inline-flex;
+  justify-content: space-between;
+  align-items: center;
+
+  &::after {
+    background-image: url('../svg/external-link.svg');
+    background-position: right center;
+    background-repeat: no-repeat;
+    content: '';
+    position: relative;
+    display: inline-flex;
+    width: 14px;
+    height: 14px;
+    background-size: 14px 14px;
+    right: 0;
+    top: 0;
+    margin-left: 5px;
+    margin-right: 2px;
+  }
+
+  @media (max-width: $container-mobile) {
+    padding-bottom: 4px;
+    display: inline;
+
+    &::after {
+      min-width: 14px;
+      min-height: 14px;
+    }
+  }
+}
+
+.extra-external-link {
+  display: inline-flex;
+  justify-content: space-between;
+  align-items: center;
+
+  svg {
+    width: 14px;
+    height: 14px;
+    margin-left: .6rem;
+  }
+}
+
+.menu-item a[href*="//"]:not([href*="www.dude.fi"]):not([href*="dude.vaiheessa.fi"]):not([href*="dude.test"]):not([href*="localhost:3000"]):not([href="dude.fi"]):not(.contact-detail):not(.button):not(.no-external-link-indicator):not(#spr-button) {
+  &::after {
+    background-image: url('../svg/external-link-white.svg');
+    padding-right: 2.5rem;
+  }
+}
+
+body.single-reference section.block a[href*="//"]:not([href*="www.dude.fi"]):not([href*="dude.vaiheessa.fi"]):not([href*="dude.test"]):not([href*="localhost:3000"]):not(.contact-detail):not(.button):not(.button):not(.url):not(.no-text-link):not(.cta-link):not(.wp-block-button__link):not(.post-edit-link):not(.contact-detail):not(.no-external-link-indicator):not(#spr-button)::after {
+  background-image: url('../svg/external-link-white.svg');
+}
+
+a[href^="mailto"]::after {
+  display: none;
+}
+
+.block-footer .menu-item a[href*="//"]:not([href*="www.dude.fi"]):not([href*="dude.vaiheessa.fi"]):not([href*="dude.test"]):not([href*="localhost:3000"]):not(.contact-detail):not(.button):not(.no-external-link-indicator):not(#spr-button) {
+  &::after {
+    background-size: 12px 12px;
+    width: 12px;
+    height: 12px;
+    padding-right: 0;
+  }
+}
+
+// https://davidwalsh.name/external-links-css
+.gutenberg-content a[href*="//"]:not([href*="www.dude.fi"]):not([href*="dude.vaiheessa.fi"]):not([href*="dude.test"]):not([href*="localhost:3000"]):not(.button):not(.url):not(.no-text-link):not(.cta-link):not(.wp-block-button__link):not(.post-edit-link):not(.contact-detail),
+.block-hero.wp-block-columns .hero-description button,
+.block-hero.wp-block-columns .hero-description button.open-chat,
+.block-timeline.wp-block-columns .active a:not(.button):not(.url):not(.no-text-link):not(.cta-link):not(.wp-block-button__link),
+.block-timeline.wp-block-columns .col a:not(.button):not(.url):not(.no-text-link):not(.cta-link):not(.wp-block-button__link),
+.block-title-left-text-right.wp-block-columns li a:not(.button):not(.url):not(.no-text-link):not(.cta-link):not(.wp-block-button__link):not(.post-edit-link):not(.contact-detail),
+.block.block-hero .hero-description button,
+.block.block-hero .hero-description button.open-chat,
+.block.block-timeline .active a:not(.button):not(.url):not(.no-text-link):not(.cta-link):not(.wp-block-button__link),
+.block.block-timeline .col a:not(.button):not(.url):not(.no-text-link):not(.cta-link):not(.wp-block-button__link),
+.block.block-title-left-text-right li a:not(.button):not(.url):not(.no-text-link):not(.cta-link):not(.wp-block-button__link):not(.post-edit-link):not(.contact-detail),
+.wp-block-columns p a:not(.button):not(.url):not(.no-text-link):not(.cta-link):not(.wp-block-button__link):not(.post-edit-link):not(.contact-detail):not([rel]):not(.contact-detail):not(.button):not(.no-external-link-indicator):not(#spr-button) {
+  display: inline-flex;
+  justify-content: space-between;
+  align-items: center;
+  margin-right: 0;
+
+  &::after {
+    background-image: url('../svg/external-link.svg');
+    background-size: 12px 12px;
+    width: 12px;
+    height: 12px;
+  }
+}
+
+// Disable animations if disabled from OS or browser
+@media screen and (prefers-reduced-motion: reduce), (update: slow) {
+  .glitch,
+  .background-image,
+  .background-image.reveal,
+  .full-image,
+  .button-glitch,
+  .button-glitch.button-glitch-active {
+    transition: .0001s !important;
+    animation: none !important;
+    transform: none !important;
+  }
+
+  .background-image.full-image {
+    transition: opacity .0001s !important;
+  }
+
+  .swup-transition-fade {
+    transition: .0001s !important;
+    animation: slideUp .0001s cubic-bezier(.075, .82, .165, 1) forwards !important;
+  }
+
+  .button-glitch.button-glitch-active {
+    transition: none !important;
+    animation: none !important;
+    transform: none !important;
+  }
+
+  .glitch::before,
+  .glitch::after,
+  .button-glitch::after,
+  .button-glitch::before,
+  .button-glitch.button-glitch-active::after,
+  .button-glitch.button-glitch-active::before {
+    display: none !important;
+  }
+}

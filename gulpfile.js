@@ -1,0 +1,12 @@
+// Export tasks
+exports.js = require('./gulp/tasks/js.js').js;
+exports.js_store = require('./gulp/tasks/js-store.js').js_store;
+exports.phpcs = require('./gulp/tasks/phpcs.js').phpcs;
+exports.scsslint = require('./gulp/tasks/scsslint.js').scsslint;
+exports.styles = require('./gulp/tasks/styles.js').styles;
+exports.gutenbergstyles = require('./gulp/tasks/styles.js').gutenbergstyles;
+exports.surveystyles = require('./gulp/tasks/styles.js').surveystyles;
+exports.amastyles = require('./gulp/tasks/styles.js').amastyles;
+exports.storestyles = require('./gulp/tasks/styles.js').storestyles;
+exports.watch = require('./gulp/tasks/watch.js').watch;
+exports.default = require('./gulp/tasks/watch.js').watch;
